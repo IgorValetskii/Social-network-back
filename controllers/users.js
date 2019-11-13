@@ -12,8 +12,9 @@ class Controller {
     }
 
     async getUser(req, res, next) {
-        const {userId} = req.params;
-        const result = await service.getUser(userId);
+        // console.log(req);
+        // const {userId} = req.params;
+        const result = await service.getUser(req.token);
         res.status(200).json(result);
     }
 

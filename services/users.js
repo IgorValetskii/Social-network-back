@@ -3,6 +3,8 @@ const League = require('../models/leagues');
 const Race = require('../models/races');
 const mongoose = require('mongoose');
 
+const jwt = require('jsonwebtoken');
+
 class Service {
     constructor() {
 
@@ -13,7 +15,9 @@ class Service {
         return users;
     }
 
-    async getUser(userId) {
+    async getUser(token) {
+     const zui = jwt.verify(token, 'secretkey');
+        const userId = zui.user[0]._id;
         const user = await User.findById(userId);
         return user;
     }

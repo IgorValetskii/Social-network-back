@@ -49,7 +49,7 @@ router.route('/')
  *        description: Returns error message
  */
 
-    .get(Controller.getAllUsers.bind(UsersController))
+    // .get(verifyToken,Controller.getAllUsers.bind(UsersController))
 
     /**
      * @swagger
@@ -71,9 +71,9 @@ router.route('/')
      *         description: Returns error message
      */
 
-    .post(Controller.addUser.bind(UsersController));
+    // .post(Controller.addUser.bind(UsersController));
 
-router.route('/:userId')
+// router.route('/')
 
 /**
  * @swagger
@@ -94,7 +94,7 @@ router.route('/:userId')
  *         description: Returns error message
  */
 
-    .get(Controller.getUser.bind(UsersController))
+    .get(verifyToken,Controller.getUser.bind(UsersController))
 
 /**
  * @swagger
