@@ -20,6 +20,7 @@ class Controller {
 
     async addUser(req, res, next) {
         const body = req.body;
+        // console.log(body)
         const result = await service.addUser(body);
         res.status(201).json(result);
 
