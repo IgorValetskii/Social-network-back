@@ -31,9 +31,9 @@ class Controller {
             //считываю токен с хедера декодирую, проверяю поле IsAdmin true или false.
         // если false отправляю  У Вас нет прав
         // если true вызываю сервис.
-        const {userId} = req.params;
+        const {id} = req.params;
         const newUser = req.body;
-        const result = await service.updateUser(userId,newUser);
+        const result = await service.updateUser(id,newUser);
         res.status(200).json(result);
     }
 

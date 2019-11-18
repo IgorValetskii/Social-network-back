@@ -21,7 +21,11 @@ const userSchema = new Schema({
     isAdmin: {
         type: Boolean,
         required: false
-    }
+    },
+
+    friendRequests: [],
+    outgoingFriendRequests:[]
+
 });
 
 const User = mongoose.model('user', userSchema);

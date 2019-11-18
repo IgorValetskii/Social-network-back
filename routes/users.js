@@ -11,8 +11,13 @@ router.route('/')
 
     .post(Controller.addUser.bind(UsersController))
 
-    .get(verifyToken,Controller.getUser.bind(UsersController))
+    .get(verifyToken,Controller.getUser.bind(UsersController));
 
+
+router.route('/all')
+    // .get(verifyToken,Controller.getAllUsers.bind(UsersController));
+    .get(Controller.getAllUsers.bind(UsersController));
+router.route('/all/:id')
 /**
  * @swagger
  * /users/{userId}:
