@@ -27,9 +27,22 @@ class Service {
         return await newUser.save();
     }
 
-    async updateUser(userId, newUser) {
-        const result = await User.findByIdAndUpdate(userId, newUser, {new: true});
-        return result;
+    async updateUser1(id, userIdWhoSentRequest) {
+        const user = await User.findById(id);
+        user.friendRequests.push(userIdWhoSentRequest);
+        return await user.save();
+
+        //
+        // console.log(user);
+        // console.log(userId)
+        // const result = await User.findByIdAndUpdate(userId, newUser, {new: true});
+        // return result;
+    }
+
+    async updateUser2(id, userIdWhoSentRequest) {
+        const user = await User.findById(id);
+        user.outgoingFriendRequests.push(userIdWhoSentRequest);
+        return await user.save();
     }
 
     async deleteUser(userId) {

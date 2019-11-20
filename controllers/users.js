@@ -32,9 +32,17 @@ class Controller {
         // если false отправляю  У Вас нет прав
         // если true вызываю сервис.
         const {id} = req.params;
-        const newUser = req.body;
-        const result = await service.updateUser(id,newUser);
-        res.status(200).json(result);
+        const body = req.body;
+
+        if(body.incomingFriendReq){
+            const userIdWhoSentRequest = body.incomingFriendReq;
+            const result = await service.updateUser1(id,userIdWhoSentRequest);
+            res.status(200).json(result);
+        } else{
+            const userIdWhoSentRequest = body.outgoingFriendReq;
+            const result = await service.updateUser2(id,userIdWhoSentRequest);
+            res.status(200).json(result);
+        }
     }
 
     async deleteUser(req, res, next){
