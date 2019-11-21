@@ -45,6 +45,9 @@ router.route('/all/:id')
 
     .put(Controller.updateUser.bind(UsersController))
 
+    // запрос на получение готового объекта для отрисовки страницы ДРУЗЬЯ
+    .post(Controller.createObjFriend.bind(UsersController))
+
 /**
  * @swagger
  * /users/{userId}:

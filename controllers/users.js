@@ -43,6 +43,12 @@ class Controller {
             const result = await service.updateUser2(id,userIdWhoSentRequest);
             res.status(200).json(result);
         }
+
+    }
+
+    async createObjFriend(req, res, next){
+        const {id} = req.params;
+
     }
 
     async deleteUser(req, res, next){
