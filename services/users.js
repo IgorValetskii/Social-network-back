@@ -45,6 +45,18 @@ class Service {
         return await user.save();
     }
 
+    async friendChange(body, ownId) {
+        //добавили в массив ДРУЗЬЯ
+        const {userId} = body;
+        const user = await User.findById(ownId);
+        user.friends.push(userId);
+        // user.friendRequests.push(userId);
+        //убрали с входящих запросов
+        const a = user.friendRequests.filter(el => el !== userId);
+        user.friendRequests = a;
+        return await user.save();
+    }
+
     async deleteUser(userId) {
         const result = await User.findByIdAndDelete(userId);
         return result;

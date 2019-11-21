@@ -46,6 +46,14 @@ class Controller {
 
     }
 
+    async friendChange(req, res, next) {
+        const {id} = req.params;
+        const ownId = id;
+        const body = req.body;
+        const result = await service.friendChange(body,ownId);
+        res.status(200).json(result);
+    }
+
     async createObjFriend(req, res, next){
         const {id} = req.params;
 

@@ -24,7 +24,8 @@ const userSchema = new Schema({
     },
 
     friendRequests: [],
-    outgoingFriendRequests:[]
+    outgoingFriendRequests:[],
+    friends:[]
 
 });
 
