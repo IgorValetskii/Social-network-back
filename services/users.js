@@ -1,6 +1,4 @@
 const User = require('../models/user');
-const League = require('../models/leagues');
-const Race = require('../models/races');
 const mongoose = require('mongoose');
 
 const jwt = require('jsonwebtoken');
@@ -15,10 +13,29 @@ class Service {
         return users;
     }
 
-    async getUser(token) {
-     const zui = jwt.verify(token, 'secretkey');
-        const userId = zui.user[0]._id;
-        const user = await User.findById(userId);
+    async getUserLogIn(token) {
+        console.log("я в сервисе getuserLogin");
+     // const zui = jwt.verify(token, 'secretkey');
+     //    const userId = zui.user[0]._id;
+     //    const user = await User.findById(userId);
+        // const user =  {
+        //     "friendRequests": [
+        //         "5d9dab1ced1b960f48fd8a89"
+        //     ],
+        //     "outgoingFriendRequests": [
+        //         "5d9dab1ced1b960f48fd8a89"
+        //     ],
+        //     "friends": [
+        //         "5dc28e433fb45a199046de20"
+        //     ],
+        //     "_id": "5dc1a91ce6aee32720dc9e69",
+        //     "firstName": "Sadio",
+        //     "lastName": "Mane",
+        //     "userName": "Father of Senegal",
+        //     "password": "123",
+        //     "isAdmin": true,
+        //     "__v": 12
+        // };
         return user;
     }
 
@@ -45,7 +62,7 @@ class Service {
         return await user.save();
     }
 
-    async friendChange(body, ownId) {
+    async incomingFriendsChange(body, ownId) {
         //добавили в массив ДРУЗЬЯ
         const {userId} = body;
         const user = await User.findById(ownId);
@@ -54,6 +71,18 @@ class Service {
         //убрали с входящих запросов
         const a = user.friendRequests.filter(el => el !== userId);
         user.friendRequests = a;
+        return await user.save();
+    }
+
+    async outgoingFriendsChange(body, ownId) {
+        //добавили в массив ДРУЗЬЯ
+        const {userId} = body;
+        const user = await User.findById(ownId);
+        user.friends.push(userId);
+        // user.friendRequests.push(userId);
+        //убрали с входящих запросов
+        const a = user.outgoingFriendRequests.filter(el => el !== userId);
+        user.outgoingFriendRequests = a;
         return await user.save();
     }
 

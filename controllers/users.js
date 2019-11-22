@@ -7,14 +7,23 @@ class Controller {
     }
 
     async getAllUsers(req, res, next) {
+        console.log('i am in getAllUsers');
         const result = await service.getAllUsers();
+        res.status(200).json(result);
+    }
+
+    async getUserLogIn(req, res, next) {
+        console.log('я в контроллере getUserLogIn  ');
+        // console.log(req);
+        // const {userId} = req.params;
+        const result = await service.getUserLogIn(req.token);
         res.status(200).json(result);
     }
 
     async getUser(req, res, next) {
         // console.log(req);
         // const {userId} = req.params;
-        const result = await service.getUser(req.token);
+        const result = await service.getUserLogIn(req.token);
         res.status(200).json(result);
     }
 
@@ -46,11 +55,19 @@ class Controller {
 
     }
 
-    async friendChange(req, res, next) {
+    async incomingFriendChange(req, res, next) {
         const {id} = req.params;
         const ownId = id;
         const body = req.body;
-        const result = await service.friendChange(body,ownId);
+        const result = await service.incomingFriendsChange(body,ownId);
+        res.status(200).json(result);
+    }
+
+    async outgoingFriendsChange(req, res, next) {
+        const {id} = req.params;
+        const ownId = id;
+        const body = req.body;
+        const result = await service.outgoingFriendsChange(body,ownId);
         res.status(200).json(result);
     }
 

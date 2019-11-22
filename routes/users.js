@@ -9,27 +9,26 @@ const Controller = new UsersController();
 
 router.route('/')
 
-    .post(Controller.addUser.bind(UsersController))
-
-    .get(verifyToken,Controller.getUser.bind(UsersController));
-
-
+    .get(verifyToken,Controller.getUserLogIn.bind(UsersController))
+//     .post(Controller.addUser.bind(UsersController));
+// router.route('/:id')
+//     .get(Controller.getUser.bind(UsersController));
+//
 router.route('/all')
-    // .get(verifyToken,Controller.getAllUsers.bind(UsersController));
-    .get(Controller.getAllUsers.bind(UsersController));
-router.route('/all/:id')
-
-    .put(Controller.updateUser.bind(UsersController))
-
-    // запрос на получение готового объекта для отрисовки страницы ДРУЗЬЯ
-    // .post(Controller.createObjFriend.bind(UsersController))
-
-
-    .delete(Controller.deleteUser.bind(UsersController));
-
-router.route('/friendschange/:id')
-
-    .put(Controller.friendChange.bind(UsersController));
+    .get(verifyToken,Controller.getAllUsers.bind(UsersController));
+//     .get(Controller.getAllUsers.bind(UsersController));
+//
+// router.route('/all/:id')
+//     .put(Controller.updateUser.bind(UsersController))
+//     .delete(Controller.deleteUser.bind(UsersController));
+//
+// router.route('/incomingfriendschange/:id')
+//
+//     .put(Controller.incomingFriendChange.bind(UsersController));
+//
+// router.route('/outgoingfriendschange/:id')
+//
+//     .put(Controller.outgoingFriendsChange.bind(UsersController));
 
 // router.route('/:userId/leagues')
 //

@@ -19,7 +19,7 @@ const options = {
         },
     },
     // Path to the API docs
-    apis: ['./routes/users.js', './routes/leagues.js', './routes/stages.js', './routes/races.js']
+    apis: ['./routes/users.js']
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
@@ -35,9 +35,6 @@ const swaggerSpec = swaggerJSDoc(options);
 //Routes
 const login = require('./routes/userlogin');
 const users = require('./routes/users');
-const leagues = require('./routes/leagues');
-const stages = require('./routes/stages');
-const races = require('./routes/races');
 
 //Middlewares
 app.use(cors());
@@ -50,9 +47,6 @@ app.use(bodyParser.json());
 //Routes
 app.use('/api/login', login);
 app.use('/users',  users);
-app.use('/leagues', leagues);
-app.use('/stages', stages);
-app.use('/races', races);
 
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
