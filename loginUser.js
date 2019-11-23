@@ -13,9 +13,9 @@ async function loginUser(req, res, next) {
         const userId = user._id;
         jwt.sign({user}, 'secretkey', {expiresIn: '1d'}, (err, token) => {
             if (err) res.send(err.message);
-            console.log(user);
-            console.log(userId);
-            console.log(token);
+            // console.log(user);
+            // console.log(userId);
+            // console.log(token);
             res.json({user,userId,token});
         });
 

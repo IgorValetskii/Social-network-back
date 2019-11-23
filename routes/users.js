@@ -9,15 +9,20 @@ const Controller = new UsersController();
 
 router.route('/')
 
-    .get(verifyToken,Controller.getUserLogIn.bind(UsersController))
+    // .get(verifyToken,Controller.getUserLogIn.bind(UsersController))
 //     .post(Controller.addUser.bind(UsersController));
 // router.route('/:id')
 //     .get(Controller.getUser.bind(UsersController));
 //
 router.route('/all')
-    .get(verifyToken,Controller.getAllUsers.bind(UsersController));
+    .get(Controller.getAllUsers.bind(UsersController));
 //     .get(Controller.getAllUsers.bind(UsersController));
 //
+router.route('/addfriend')
+    .put(verifyToken,Controller.addFriend.bind(UsersController));
+
+router.route('/friendreq')
+    .put(verifyToken,Controller.friendReq.bind(UsersController));
 // router.route('/all/:id')
 //     .put(Controller.updateUser.bind(UsersController))
 //     .delete(Controller.deleteUser.bind(UsersController));

@@ -7,9 +7,25 @@ class Controller {
     }
 
     async getAllUsers(req, res, next) {
-        console.log('i am in getAllUsers');
         const result = await service.getAllUsers();
         res.status(200).json(result);
+    }
+
+    async friendReq(req,res){
+        const body = req.body;
+        const result = await service.friendReq(body);
+        console.log(result);
+        if(result) res.send();
+
+        // res.status(200).json(result);
+    }
+
+    async addFriend(req,res){
+        const body = req.body;
+        const result = await service.addFriend(body);
+        console.log(result);
+
+        // res.status(200).json(result);
     }
 
     async getUserLogIn(req, res, next) {

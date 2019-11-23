@@ -13,6 +13,38 @@ class Service {
         return users;
     }
 
+    async friendReq(body){
+        const {id,ownId} = body;
+        const ownUser = await User.findById(ownId);
+        ownUser.outgoingFriendRequests.push(id);
+        const udatedOwnUser = await ownUser.save();
+
+        const user = await User.findById(id);
+        user.friendRequests.push(ownId);
+        const updatedUser = await user.save();
+        return {udatedOwnUser, updatedUser}
+    }
+
+    async addFriend(body){
+        const {id,ownId} = body;
+        console.log(id);
+        console.log(ownId);
+        const ownUser = await User.findById(ownId);
+        //добавили в массив ДРУЗЬЯ
+        ownUser.friends.push(id);
+        //убрали с входящих запросов
+        ownUser.friendRequests = ownUser.friendRequests.filter(el => el !== id);
+        const udatedOwnUser = await ownUser.save();
+
+        const user = await User.findById(id);
+        //добавили в массив ДРУЗЬЯ
+        user.friends.push(ownId);
+        //убрали с исходящих запросов
+        user.outgoingFriendRequests = user.outgoingFriendRequests.filter(el => el !== ownId);
+        const updatedUser = await user.save();
+        return {udatedOwnUser, updatedUser}
+    }
+
     async getUserLogIn(token) {
         console.log("я в сервисе getuserLogin");
      // const zui = jwt.verify(token, 'secretkey');

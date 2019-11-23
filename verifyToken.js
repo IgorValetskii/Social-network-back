@@ -14,7 +14,6 @@ async function verifyToken(req, res, next) {
         res.sendStatus(403);
     }
     jwt.verify(req.token, 'secretkey', (err, authData) => {
-        console.log('123')
         if (err) {
             res.sendStatus(403);
         }
