@@ -7,10 +7,10 @@ const UsersController = require('../controllers/users');
 const Controller = new UsersController();
 
 
-// router.route('/')
-//
-//     // .get(verifyToken,Controller.getUserLogIn.bind(UsersController))
-// //     .post(Controller.addUser.bind(UsersController));
+router.route('/')
+
+    // .get(verifyToken,Controller.getUserLogIn.bind(UsersController))
+    .post(Controller.addUser.bind(UsersController));
 
 router.route('/all')
     .get(Controller.getAllUsers.bind(UsersController));
