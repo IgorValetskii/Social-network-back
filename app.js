@@ -4,10 +4,8 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger');
 const swaggerJSDoc = require('swagger-jsdoc');
 const cors = require('cors');
-// const verifyToken = require('./verifyToken');
 
 
 const options = {
@@ -24,12 +22,6 @@ const options = {
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
 const swaggerSpec = swaggerJSDoc(options);
-
-
-// app.get('/api-docs.json', (req, res) => {
-//     res.setHeader('Content-Type', 'application/json');
-//     res.send(swaggerSpec);
-// });
 
 
 //Routes

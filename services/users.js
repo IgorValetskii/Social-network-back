@@ -45,30 +45,29 @@ class Service {
         return {udatedOwnUser, updatedUser}
     }
 
-    async getUserLogIn(token) {
-        console.log("я в сервисе getuserLogin");
-     // const zui = jwt.verify(token, 'secretkey');
-     //    const userId = zui.user[0]._id;
-     //    const user = await User.findById(userId);
-        // const user =  {
-        //     "friendRequests": [
-        //         "5d9dab1ced1b960f48fd8a89"
-        //     ],
-        //     "outgoingFriendRequests": [
-        //         "5d9dab1ced1b960f48fd8a89"
-        //     ],
-        //     "friends": [
-        //         "5dc28e433fb45a199046de20"
-        //     ],
-        //     "_id": "5dc1a91ce6aee32720dc9e69",
-        //     "firstName": "Sadio",
-        //     "lastName": "Mane",
-        //     "userName": "Father of Senegal",
-        //     "password": "123",
-        //     "isAdmin": true,
-        //     "__v": 12
-        // };
-        return user;
+    async getUser(id) {
+        const user = await User.findById(id);
+
+        // const incomingReqsNames = await user.friendRequests.map(async id => await id.findById(id));
+        // console.log(user.friends);
+        const friend = await User.findById(user.friends[0]);
+
+        const  incomingReqsNames =await user.friends.map(async id =>
+        {console.log('123')
+         let asd = await User.findById(id);
+            console.log(asd);
+          let name = asd.firstName;
+          let lastName = asd.lastName;
+            return asd
+        });
+
+        console.log(incomingReqsNames);
+        // console.log(incomingReqsNames[0]);
+        //
+        // console.log(friend);
+
+
+        // return user;+
     }
 
     async addUser(body) {
